@@ -1,12 +1,14 @@
 import React from "react";
 import Header from "./components/Header";
+import Main from "./components/Main";
 
 function App() {
   return (
-    <div className="container">
+    <>
       <Header />
-      <h2>GA SEI-33</h2>
-    </div>
+
+      <Main />
+    </>
   );
 }
 
