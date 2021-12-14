@@ -1,25 +1,23 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
+import YouTube from "react-youtube";
 
-const VideoPlayer = () => {
-  const videoRef = useRef(null);
-  const playerRef = useRef(null);
+const VideoPlayer = (props) => {
+  const { videoId } = props;
 
-  React.useEffect(() => {
-    // to make sure Video.js player is only initialized once
-    if (!playerRef.current) {
-      const videoElement = videoRef.current;
-      if (!videoElement) return;
+  const opts = {
+    height: "390",
+    width: "640",
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
+  const videoOnReady = (event) => {
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+  };
 
-      const player = (playerRef.current = videojs(videoElement, options, () => {
-        console.log("player is ready");
-        onReady && onReady(player);
-      }));
-    } else {
-      // update player
-    }
-  }, [options, videoRef]);
-
-  return <div></div>;
+  return <YouTube videoId={videoId} opts={opts} onReady={videoOnReady} />;
 };
 
 export default VideoPlayer;

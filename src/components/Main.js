@@ -4,6 +4,7 @@ import SearchResultList from "./SearchResultList";
 import youTubeData from "../data/resources";
 import youTubeApi from "../api/youTubeApiConfig";
 import axiosFetch from "../api/useAxiosFetch";
+import VideoPlayer from "./VideoPlayer";
 
 const Main = () => {
   const [topic, setTopic] = useState("");
@@ -30,36 +31,36 @@ const Main = () => {
 
   const getSearchResult = async () => {
     // using download date instead of Api to save limit
-    // const { nextPageToken } = youTubeData;
-    // const res = await Promise.all(
-    //   youTubeData.items.map((item) => {
-    //     const { id = {}, snippet = {} } = item;
-    //     const { videoId } = id;
-    //     const { title, channelTitle, publishTime, description } = snippet;
-    //     const { url: thumbnail } = snippet.thumbnails.default;
-    //     return {
-    //       videoId,
-    //       title,
-    //       channelTitle,
-    //       publishTime,
-    //       description,
-    //       thumbnail,
-    //       nextPageToken,
-    //     };
-    //   })
-    // );
+    const { nextPageToken } = youTubeData;
+    const res = await Promise.all(
+      youTubeData.items.map((item) => {
+        const { id = {}, snippet = {} } = item;
+        const { videoId } = id;
+        const { title, channelTitle, publishTime, description } = snippet;
+        const { url: thumbnail } = snippet.thumbnails.default;
+        return {
+          videoId,
+          title,
+          channelTitle,
+          publishTime,
+          description,
+          thumbnail,
+          nextPageToken,
+        };
+      })
+    );
 
-    const params = {
-      url: "/search",
-      method: "get",
-      params: {
-        part: "snippet",
-        q: topic,
-        relevantLanguage: "en",
-        type: "video",
-      },
-    };
-    const res = await axiosFetch(youTubeApi, params, filterYouTubeData);
+    // const params = {
+    //   url: "/search",
+    //   method: "get",
+    //   params: {
+    //     part: "snippet",
+    //     q: topic,
+    //     relevantLanguage: "en",
+    //     type: "video",
+    //   },
+    // };
+    // const res = await axiosFetch(youTubeApi, params, filterYouTubeData);
     setResults(res);
     // console.log("response", res);
     // setIsLoading(false);
@@ -84,6 +85,8 @@ const Main = () => {
       {Object.keys(results).length > 0 && (
         <SearchResultList results={results} />
       )}
+
+      <VideoPlayer videoId="1Rs2ND1ryYc" />
     </div>
   );
 };
