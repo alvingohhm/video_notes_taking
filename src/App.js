@@ -1,15 +1,21 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Main from "./components/Main";
+import NotePage from "./components/NotePage";
 
 function App() {
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<Main />} />
-      </Routes>
+      <Switch>
+        <Route exact path="/">
+          <Main />
+        </Route>
+        <Route path="/notes">
+          <NotePage />
+        </Route>
+      </Switch>
     </>
   );
 }

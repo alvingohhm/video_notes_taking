@@ -1,0 +1,15 @@
+main {
+  display: flex;
+  flex-wrap: nowrap;
+  height: calc(100vh - 80px);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.scrollarea {
+  overflow-y: auto;
+}
+
+/* .scrollarea::-webkit-scrollbar {
+  display: none;
+} */

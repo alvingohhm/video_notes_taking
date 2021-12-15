@@ -1,4 +1,5 @@
 const axiosFetch = async (axiosInstance, axiosParams, responseBuilder) => {
+  console.log("in axiosFetch");
   try {
     const dataResult = await axiosInstance
       .request(axiosParams, responseBuilder)

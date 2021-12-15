@@ -1,17 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import parse from "../utils/htmlTextParser";
 
 const SearchResult = (props) => {
   const { videoId, title, channelTitle, publishTime, description, thumbnail } =
     props.item;
 
-  const parser = new DOMParser();
-  const newtitle = parser.parseFromString(title, "text/html").body.textContent;
-
+  // const parser = new DOMParser();
+  // const newtitle = parser.parseFromString(title, "text/html").body.textContent;
+  const newtitle = parse(title);
   return (
-    <a
-      href="/#"
+    <Link
+      to={{
+        pathname: "/notes",
+        state: { videoProps: { videoId, title, channelTitle, description } },
+      }}
       className="list-group-item list-group-item-action"
-      aria-current="true"
       id={videoId}
     >
       <div className="row g-0">
@@ -28,7 +32,7 @@ const SearchResult = (props) => {
           <small className="text-muted">{`Publish at ${publishTime}`}</small>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
