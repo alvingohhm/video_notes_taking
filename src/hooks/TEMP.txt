@@ -1,0 +1,28 @@
+           <form className="Container">
+              <label htmlFor="category" className="form-label">
+                Select a category
+              </label>
+              <select
+                className="form-select"
+                onChange={getCategory}
+                value={category}
+                id="category"
+              >
+                <option value="css">css</option>
+                <option value="react">react</option>
+                <option value="javascript">javascript</option>
+              </select>
+              <label htmlFor="category" className="form-label">
+                Select a category
+              </label>
+              <select
+                className="form-select"
+                onChange={getCategory}
+                value={category}
+                id="category"
+              >
+                <option value="css">css</option>
+                <option value="react">react</option>
+                <option value="javascript">javascript</option>
+              </select>
+            </form>

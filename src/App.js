@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Main from "./components/Main";
-import NotePage from "./components/NotePage";
+import NotePage from "./components/NotePage/NotePage";
 
 function App() {
   return (

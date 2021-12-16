@@ -4,10 +4,12 @@ import SearchResultList from "./SearchResultList";
 import youTubeData from "../data/resources";
 import youTubeApi from "../api/youTubeApiConfig";
 import axiosFetch from "../api/useAxiosFetch";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const Main = () => {
   const [topic, setTopic] = useState("");
-  const [results, setResults] = useState({});
+  // const [results, setResults] = useState({});
+  const [results, setResults] = useLocalStorage("results", {});
 
   const filterYouTubeData = (rawData) => {
     const { nextPageToken = "" } = rawData;

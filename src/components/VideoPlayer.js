@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import YouTube from "react-youtube";
+import VideoContext from "../context/video_context";
 
 const VideoPlayer = (props) => {
   const { videoId } = props;
+  const { setPlayerObj } = useContext(VideoContext);
 
   const opts = {
     // height: "390",
@@ -14,6 +16,7 @@ const VideoPlayer = (props) => {
   };
   const videoOnReady = (event) => {
     // access to player in all event handlers via event.target
+    setPlayerObj(event.target);
     event.target.stopVideo();
   };
 
